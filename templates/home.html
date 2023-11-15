@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt count Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card-holder">
+    <h4>Year 2022: Monthly Receipt Count Prediction </h4>
+    <div class ="card">
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.month.label }}
+            {{ form.month(class="form-control") }}
+            {% if form.month.errors %}
+                <span style="color: red;">{{ form.month.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <br>
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+        </div>
+    <div>
+        {% if prediction_data %}
+            <p>Month:{{prediction_data[0]}} </p>
+            <p>Receipt Count:{{prediction_data[1]}} </p>
+        {% endif %}
+    </div>
+    </div>
+</body>
+</html>
